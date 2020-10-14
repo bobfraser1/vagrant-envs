@@ -1,0 +1,36 @@
+VAGRANT_BOX = 'generic/alpine38'
+VM_HOSTNAME = 'worker1'
+VM_NETWORK = 'tink_network'
+VM_MAC = '080027000001'
+VM_MEMORY = '4096'
+VM_CPUS = '2'
+
+Vagrant.configure('2') do |config|
+  config.vm.box = VAGRANT_BOX
+  config.vm.hostname = VM_HOSTNAME
+  config.vm.network 'private_network',
+                    virtualbox__intnet: VM_NETWORK,
+                    mac: VM_MAC,
+                    auto_config: false
+  config.vm.boot_timeout = 5
+  config.vm.provider 'virtualbox' do |vm|
+    vm.name = VM_HOSTNAME
+    vm.memory = VM_MEMORY
+    vm.cpus = VM_CPUS
+    vm.gui = true
+    vm.customize [
+                   'modifyvm',
+                   :id,
+                   '--nic1',
+                   'none',
+                   '--boot1',
+                   'net',
+                   '--boot2',
+                   'none',
+                   '--boot3',
+                   'none',
+                   '--boot4',
+                   'none'
+                 ]
+  end
+end

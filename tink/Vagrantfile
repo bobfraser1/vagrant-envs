@@ -1,0 +1,17 @@
+VAGRANT_BOX = 'tink'
+VM_HOSTNAME = 'tink'
+VM_NETWORK = 'tink_network'
+VM_MEMORY = '2048'
+VM_CPUS = '2'
+
+Vagrant.configure('2') do |config|
+  config.vm.box = VAGRANT_BOX
+  config.vm.hostname = VM_HOSTNAME
+  config.vm.network 'private_network',
+                    virtualbox__intnet: VM_NETWORK, auto_config: false
+  config.vm.provider 'virtualbox' do |vm|
+    vm.name = VM_HOSTNAME
+    vm.memory = VM_MEMORY
+    vm.cpus = VM_CPUS
+  end
+end

@@ -1,3 +1,3 @@
 # vagrant-envs
 
-Infrastructure as code with Vagrant
+Tinkerbell and a worker node
