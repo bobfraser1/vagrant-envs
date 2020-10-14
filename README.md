@@ -1,3 +1,3 @@
 # vagrant-envs
 
-Infrastructure as code with Vagrant
+Debian docker node with shared files
