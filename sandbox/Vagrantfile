@@ -1,5 +1,5 @@
-VAGRANT_BOX = 'tink'
-VM_HOSTNAME = 'tink'
+VAGRANT_BOX = 'sandbox'
+VM_HOSTNAME = 'sandbox'
 VM_NETWORK = 'tink_network'
 VM_MEMORY = '2048'
 VM_CPUS = '2'
