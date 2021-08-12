@@ -1,5 +1,5 @@
 VAGRANT_BOX = 'debian/contrib-buster64'
-VM_HOSTNAME = 'debian1'
+VM_HOSTNAME = 'docker1'
 VM_NETWORK = 'vboxnet1'
 VM_MAC = '080027000020'
 VM_IP = '192.168.1.20'
@@ -16,9 +16,14 @@ Vagrant.configure('2') do |config|
                     adapter: 1,
                     auto_config: false
   config.ssh.host = VM_IP
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+  config.vm.synced_folder '/Users/bfraser', '/bfraser'
   config.vm.provider 'virtualbox' do |vm|
     vm.name = VM_HOSTNAME
     vm.memory = VM_MEMORY
     vm.cpus = VM_CPUS
+  end
+  config.vm.provision 'docker' do |d|
+    d.post_install_provision 'shell', path: 'scripts/docker-compose.sh'
   end
 end
